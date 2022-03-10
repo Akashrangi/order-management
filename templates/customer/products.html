@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<h4 style="text-align: center;"><a href="{% url 'customer' %}">Home</a></h4>
+<div style="display: flex;" class="container mt-3">
+    {% for p in pr %}
+    <div class="card" style="width:400px;border: 29px solid rgba(207, 206, 206, 0.125);">
+        <img class="card-img-top" src="{{p.image.url}}" alt="Card image" style="width:100%">
+        <div class="card-body">
+            <h4 class="card-title"><a class="d" style="text-decoration: none;" href="{% url 'product-detail' p.id %}">{{p.name}}</a></h4>
+            <p class="card-text">{{p.price}}</p>
+            <form action="{% url 'cart_add' p.id %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="ADD TO CART">
+            </form>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

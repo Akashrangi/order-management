@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Result For {{request.GET.search}}</h1>
+{% if product %}
+{% for each_book in product %} 
+
+    <!--Upon successful search book image with hyperlink appears -->
+    <img src="{{each_book.image.url}}" alt="No Image"></a>
+    <p>{{each_book.name}}</p>
+    <p>Rs.{{each_book.price}}</p>   
+{% endfor %}
+{% endif %}
+
+{% endblock %}

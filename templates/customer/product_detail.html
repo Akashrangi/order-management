@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    
+    <title>Product-Detail</title>
+    <style>
+        .main {
+            background-color: rgb(196, 228, 217);
+        }
+
+        .container {
+            
+            display:flex;
+
+        }
+
+        .small {
+            background-color: rgb(159, 151, 167);
+            display: flex;
+            width: 78%;
+            margin-left: 38px;
+        }
+        .center{
+            background-color: rgb(220, 223, 217);
+            display: initial;
+            padding: 53px;
+        }
+        .a{
+            background-color: khaki;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h2>Products</h2>
+        <div> {{details.shop}}</div>
+        <div class="container">
+            
+            <img src="{{details.image.url}}">
+
+            <div class="small">
+                <div class="center">
+                    
+                    <h4>{{details.category}}</h4>
+                    <div class="a">{{details.name}}</div>
+                    <h4>Price</h4>
+                    <div class="a">{{details.price}}</div>
+
+                   
+                </div>
+                <form action="{% url 'cart_add' details.id %}" method="post">
+                    {% csrf_token %}
+                    {{ cart_product_form }}
+                    <input type="submit" value="ADD TO CART">
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
